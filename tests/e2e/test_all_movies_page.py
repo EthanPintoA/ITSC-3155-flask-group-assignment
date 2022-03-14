@@ -2,19 +2,15 @@ from flask import Flask
 from flask.testing import FlaskClient
 from src.repositories.movie_repository import movie_repository_singleton
 from app import app
-import pytest
 
-@pytest.fixture
-def testing_app():
-    return app.test_client()
 
-def test_all_movies_page(testing_app: FlaskClient):
+def test_all_movies_page(test_app: FlaskClient):
     
     movie_repository_singleton.create_movie("Batman", "Caden", 4)
     movie_repository_singleton.create_movie("Superman", "William", 5)
     movie_repository_singleton.create_movie("Hulk", "Josh", 3)
 
-    response = testing_app.get('/movies')
+    response = test_app.get('/movies')
     
     assert b"<td>Batman</td>" in response.data
     assert b"<td>Caden</td>" in response.data
