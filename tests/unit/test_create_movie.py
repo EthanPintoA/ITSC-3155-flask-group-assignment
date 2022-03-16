@@ -23,3 +23,4 @@ def test_create_movie():
     assert movies[1].title == "Cats"
     assert movies[1].director == "Tom Hooper"
     assert movies[1].rating == 1
+

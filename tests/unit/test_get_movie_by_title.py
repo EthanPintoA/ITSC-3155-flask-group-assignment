@@ -30,3 +30,4 @@ def test_get_all_movies():
     assert movie03 is None
     assert movie04 is None
     assert movie05 is not None
+
