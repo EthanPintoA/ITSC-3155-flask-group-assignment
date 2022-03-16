@@ -4,6 +4,58 @@
 
 {% block body %}
 <h1 class="mb-5">Search Movie Ratings</h1>
-<p class="mb-3">Search for a movie rating below</p>
-<!-- TODO: Feature 3 -->
-{% endblock %}
+<p class="mb-5">Search for a movie rating below</p>
+
+
+<!--Begin Form-->
+<div class="mb-5">
+    <form action="/movies/search" method="get" class="row row-cols-lg-auto g-3 align-items-center">
+        <div class="col-12">
+            <label for="movie" class="visually-hidden">Movie Titile</label>
+            <div class="input-group">
+                <div class="input-group-text">Movie Title:</div>
+                <input type="text" class="form-control" id="input_movie" name="input_movie" autocomplete="off">
+            </div>
+        </div>
+        <div class="col-12">
+            <button type="submit" value="Submit" class="btn btn-primary name">Search</button>
+        </div>
+    </form>
+</div>
+
+<!--End Form-->
+
+{% if search_movie and search_movie != 'Error: No Parameter' %}
+
+<div class="mt-5">
+    <div class="card text-center border border-3 border-dark ">
+        <div class="card-header text-white bg-dark rounded">Your Result</div>
+        <div class="card-body mt-5">
+            <p> {{ search_movie.title }} directed by {{ search_movie.director }} has a {{ search_movie.rating }} star rating.</p>
+        </div>
+        <div class="card-body">
+            <a href="/movies/search" class="btn btn-primary">Search Again</a>
+        </div>
+    </div>
+</div>
+
+{% elif not search_movie %}
+
+<div class="mt-5">
+    <div class="card text-center border border-3 border-dark ">
+        <div class="card-header text-white bg-dark rounded">Your Result</div>
+        <div class="card-body mt-5">
+            <p> That title is not in our database.</p>
+            <p> Be the first to add the rating or search again</p>
+        </div>
+        <div class="card-body">
+            <a href="/movies/new" class="btn btn-primary">Create Rating</a>
+            <a href="/movies/search" class="btn btn-primary">Search Again</a>
+        </div>
+    </div>
+
+    {% else %}
+
+    {% endif %}
+
+    {% endblock %}
